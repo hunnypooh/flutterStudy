@@ -10,6 +10,7 @@ _$_Category _$$_CategoryFromJson(Map<String, dynamic> json) => _$_Category(
       title: json['title'] as String,
       color: json['color'] as int,
       id: json['id'] as int?,
+      imagePath: json['imagePath'] as String,
     );
 
 Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>
       'title': instance.title,
       'color': instance.color,
       'id': instance.id,
+      'imagePath': instance.imagePath,
     };

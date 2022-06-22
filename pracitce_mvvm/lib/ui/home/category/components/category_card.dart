@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
   final Color color;
   final String title;
+  final String path;
 
   const CategoryCard({
     Key? key,
     required this.color,
     required this.title,
+    required this.path,
   }) : super(key: key);
 
   @override
@@ -20,8 +24,12 @@ class CategoryCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black26,
             blurRadius: 6.0,
-          ),
+          )
         ],
+        image: DecorationImage(
+          image: FileImage(File(path)),
+          fit: BoxFit.cover,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),

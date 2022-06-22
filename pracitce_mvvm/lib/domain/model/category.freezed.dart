@@ -23,6 +23,7 @@ mixin _$Category {
   String get title => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ mixin _$Category {
 abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res>;
-  $Res call({String title, int color, int? id});
+  $Res call({String title, int color, int? id, String imagePath});
 }
 
 /// @nodoc
@@ -50,6 +51,7 @@ class _$CategoryCopyWithImpl<$Res> implements $CategoryCopyWith<$Res> {
     Object? title = freezed,
     Object? color = freezed,
     Object? id = freezed,
+    Object? imagePath = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -64,6 +66,10 @@ class _$CategoryCopyWithImpl<$Res> implements $CategoryCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -74,7 +80,7 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
           _$_Category value, $Res Function(_$_Category) then) =
       __$$_CategoryCopyWithImpl<$Res>;
   @override
-  $Res call({String title, int color, int? id});
+  $Res call({String title, int color, int? id, String imagePath});
 }
 
 /// @nodoc
@@ -92,6 +98,7 @@ class __$$_CategoryCopyWithImpl<$Res> extends _$CategoryCopyWithImpl<$Res>
     Object? title = freezed,
     Object? color = freezed,
     Object? id = freezed,
+    Object? imagePath = freezed,
   }) {
     return _then(_$_Category(
       title: title == freezed
@@ -106,6 +113,10 @@ class __$$_CategoryCopyWithImpl<$Res> extends _$CategoryCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -113,7 +124,11 @@ class __$$_CategoryCopyWithImpl<$Res> extends _$CategoryCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Category implements _Category {
-  _$_Category({required this.title, required this.color, this.id});
+  _$_Category(
+      {required this.title,
+      required this.color,
+      this.id,
+      required this.imagePath});
 
   factory _$_Category.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryFromJson(json);
@@ -124,10 +139,12 @@ class _$_Category implements _Category {
   final int color;
   @override
   final int? id;
+  @override
+  final String imagePath;
 
   @override
   String toString() {
-    return 'Category(title: $title, color: $color, id: $id)';
+    return 'Category(title: $title, color: $color, id: $id, imagePath: $imagePath)';
   }
 
   @override
@@ -137,7 +154,8 @@ class _$_Category implements _Category {
             other is _$_Category &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.color, color) &&
-            const DeepCollectionEquality().equals(other.id, id));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.imagePath, imagePath));
   }
 
   @JsonKey(ignore: true)
@@ -146,7 +164,8 @@ class _$_Category implements _Category {
       runtimeType,
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(id));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(imagePath));
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +182,8 @@ abstract class _Category implements Category {
   factory _Category(
       {required final String title,
       required final int color,
-      final int? id}) = _$_Category;
+      final int? id,
+      required final String imagePath}) = _$_Category;
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
 
@@ -173,6 +193,8 @@ abstract class _Category implements Category {
   int get color => throw _privateConstructorUsedError;
   @override
   int? get id => throw _privateConstructorUsedError;
+  @override
+  String get imagePath => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryCopyWith<_$_Category> get copyWith =>

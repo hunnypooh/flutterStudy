@@ -50,8 +50,9 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void _saveCategory(String text) async {
-    var category = Category(title: text, color: Random().nextInt(4));
+  void _saveCategory(String text, String imagePath) async {
+    var category =
+        Category(title: text, color: Random().nextInt(4), imagePath: imagePath);
     int id = await categoryUseCase.addCategory(category);
     category = category.copyWith(id: id);
 

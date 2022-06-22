@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pracitce_mvvm/ui/home/category/category_screen.dart';
-import 'package:pracitce_mvvm/ui/home/favorite/favorite_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:pracitce_mvvm/ui/home/home_view_model.dart';
 import 'package:pracitce_mvvm/ui/home/home_event.dart';
+import 'package:pracitce_mvvm/ui/home/category/category_screen.dart';
+import 'package:pracitce_mvvm/ui/home/favorite/favorite_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

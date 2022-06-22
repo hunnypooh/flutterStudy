@@ -20,7 +20,7 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loadCategories,
     required TResult Function(int index) changeBottomNavigationIndex,
-    required TResult Function(String text) saveCategory,
+    required TResult Function(String text, String imagePath) saveCategory,
     required TResult Function(Category category) removeCategory,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$HomeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$HomeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
     required TResult orElse(),
   }) =>
@@ -128,7 +128,7 @@ class _$LoadCategories implements LoadCategories {
   TResult when<TResult extends Object?>({
     required TResult Function() loadCategories,
     required TResult Function(int index) changeBottomNavigationIndex,
-    required TResult Function(String text) saveCategory,
+    required TResult Function(String text, String imagePath) saveCategory,
     required TResult Function(Category category) removeCategory,
   }) {
     return loadCategories();
@@ -139,7 +139,7 @@ class _$LoadCategories implements LoadCategories {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
   }) {
     return loadCategories?.call();
@@ -150,7 +150,7 @@ class _$LoadCategories implements LoadCategories {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
     required TResult orElse(),
   }) {
@@ -276,7 +276,7 @@ class _$ChangeBottomNavigationIndex implements ChangeBottomNavigationIndex {
   TResult when<TResult extends Object?>({
     required TResult Function() loadCategories,
     required TResult Function(int index) changeBottomNavigationIndex,
-    required TResult Function(String text) saveCategory,
+    required TResult Function(String text, String imagePath) saveCategory,
     required TResult Function(Category category) removeCategory,
   }) {
     return changeBottomNavigationIndex(index);
@@ -287,7 +287,7 @@ class _$ChangeBottomNavigationIndex implements ChangeBottomNavigationIndex {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
   }) {
     return changeBottomNavigationIndex?.call(index);
@@ -298,7 +298,7 @@ class _$ChangeBottomNavigationIndex implements ChangeBottomNavigationIndex {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
     required TResult orElse(),
   }) {
@@ -364,7 +364,7 @@ abstract class _$$SaveCategoryCopyWith<$Res> {
   factory _$$SaveCategoryCopyWith(
           _$SaveCategory value, $Res Function(_$SaveCategory) then) =
       __$$SaveCategoryCopyWithImpl<$Res>;
-  $Res call({String text});
+  $Res call({String text, String imagePath});
 }
 
 /// @nodoc
@@ -380,11 +380,16 @@ class __$$SaveCategoryCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? text = freezed,
+    Object? imagePath = freezed,
   }) {
     return _then(_$SaveCategory(
       text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -393,14 +398,16 @@ class __$$SaveCategoryCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SaveCategory implements SaveCategory {
-  const _$SaveCategory(this.text);
+  const _$SaveCategory(this.text, this.imagePath);
 
   @override
   final String text;
+  @override
+  final String imagePath;
 
   @override
   String toString() {
-    return 'HomeEvent.saveCategory(text: $text)';
+    return 'HomeEvent.saveCategory(text: $text, imagePath: $imagePath)';
   }
 
   @override
@@ -408,12 +415,15 @@ class _$SaveCategory implements SaveCategory {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveCategory &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.text, text) &&
+            const DeepCollectionEquality().equals(other.imagePath, imagePath));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(text),
+      const DeepCollectionEquality().hash(imagePath));
 
   @JsonKey(ignore: true)
   @override
@@ -425,10 +435,10 @@ class _$SaveCategory implements SaveCategory {
   TResult when<TResult extends Object?>({
     required TResult Function() loadCategories,
     required TResult Function(int index) changeBottomNavigationIndex,
-    required TResult Function(String text) saveCategory,
+    required TResult Function(String text, String imagePath) saveCategory,
     required TResult Function(Category category) removeCategory,
   }) {
-    return saveCategory(text);
+    return saveCategory(text, imagePath);
   }
 
   @override
@@ -436,10 +446,10 @@ class _$SaveCategory implements SaveCategory {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
   }) {
-    return saveCategory?.call(text);
+    return saveCategory?.call(text, imagePath);
   }
 
   @override
@@ -447,12 +457,12 @@ class _$SaveCategory implements SaveCategory {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
     required TResult orElse(),
   }) {
     if (saveCategory != null) {
-      return saveCategory(text);
+      return saveCategory(text, imagePath);
     }
     return orElse();
   }
@@ -499,9 +509,11 @@ class _$SaveCategory implements SaveCategory {
 }
 
 abstract class SaveCategory implements HomeEvent {
-  const factory SaveCategory(final String text) = _$SaveCategory;
+  const factory SaveCategory(final String text, final String imagePath) =
+      _$SaveCategory;
 
   String get text => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$SaveCategoryCopyWith<_$SaveCategory> get copyWith =>
       throw _privateConstructorUsedError;
@@ -582,7 +594,7 @@ class _$RemoveCategory implements RemoveCategory {
   TResult when<TResult extends Object?>({
     required TResult Function() loadCategories,
     required TResult Function(int index) changeBottomNavigationIndex,
-    required TResult Function(String text) saveCategory,
+    required TResult Function(String text, String imagePath) saveCategory,
     required TResult Function(Category category) removeCategory,
   }) {
     return removeCategory(category);
@@ -593,7 +605,7 @@ class _$RemoveCategory implements RemoveCategory {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
   }) {
     return removeCategory?.call(category);
@@ -604,7 +616,7 @@ class _$RemoveCategory implements RemoveCategory {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCategories,
     TResult Function(int index)? changeBottomNavigationIndex,
-    TResult Function(String text)? saveCategory,
+    TResult Function(String text, String imagePath)? saveCategory,
     TResult Function(Category category)? removeCategory,
     required TResult orElse(),
   }) {

@@ -8,6 +8,7 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.loadCategories() = LoadCategories;
   const factory HomeEvent.changeBottomNavigationIndex(int index) =
       ChangeBottomNavigationIndex;
-  const factory HomeEvent.saveCategory(String text) = SaveCategory;
+  const factory HomeEvent.saveCategory(String text, String imagePath) =
+      SaveCategory;
   const factory HomeEvent.removeCategory(Category category) = RemoveCategory;
 }

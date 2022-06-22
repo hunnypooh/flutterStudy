@@ -16,7 +16,7 @@ Future<List<SingleChildWidget>> getProviders() async {
     version: 1,
     onCreate: (db, version) async {
       await db.execute(
-          'CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, color INTEGER)');
+          'CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, color INTEGER, imagePath TEXT)');
       await db.execute(
           'CREATE TABLE favorite (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, color INTEGER)');
     },
