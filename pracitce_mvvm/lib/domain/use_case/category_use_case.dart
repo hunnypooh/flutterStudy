@@ -16,6 +16,12 @@ class CategoryUseCase {
 
   Future<List<Category>> getCategoryList() async {
     List<Category> list = await categoryRepository.getCategoryList();
+    for (int i = 0; i < list.length; i++) {
+      if (i % 2 == 0) {
+        list[i] = list[i].copyWith(imagePath: "");
+        print("=========" + list[i].imagePath + "==========\n");
+      }
+    }
     return list.reversed.toList();
   }
 }

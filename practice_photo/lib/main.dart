@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   StreamSubscription _intentDataStreamSubscription;
   List<SharedMediaFile> _sharedFiles;
+  String _sharedText;
 
   @override
   void initState() {
@@ -21,20 +22,35 @@ class _MyAppState extends State<MyApp> {
     // For sharing images coming from outside the app while the app is in the memory
     _intentDataStreamSubscription = ReceiveSharingIntent.getMediaStream()
         .listen((List<SharedMediaFile> value) {
-      // setState(() {
-      //   print("Shared:" + (_sharedFiles?.map((f) => f.path)?.join(",") ?? ""));
-      //   _sharedFiles = value;
-      // });
-      print(value.first.path);
+      setState(() {
+        print("Shared:" + (_sharedFiles?.map((f) => f.path)?.join(",") ?? ""));
+        _sharedFiles = value;
+      });
     }, onError: (err) {
       print("getIntentDataStream error: $err");
     });
 
     // For sharing images coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialMedia().then((List<SharedMediaFile> value) {
-      print(value.first.path);
       setState(() {
         _sharedFiles = value;
+      });
+    });
+
+    // For sharing or opening urls/text coming from outside the app while the app is in the memory
+    _intentDataStreamSubscription =
+        ReceiveSharingIntent.getTextStream().listen((String value) {
+      setState(() {
+        _sharedText = value;
+      });
+    }, onError: (err) {
+      print("getLinkStream error: $err");
+    });
+
+    // For sharing or opening urls/text coming from outside the app while the app is closed
+    ReceiveSharingIntent.getInitialText().then((String value) {
+      setState(() {
+        _sharedText = value;
       });
     });
   }
@@ -57,9 +73,10 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: <Widget>[
               Text("Shared files:", style: textStyleBold),
-              // Text(_sharedFiles?.map((f) => f.path)?.join(",") ?? ""),
+              Text(_sharedFiles?.map((f) => f.path)?.join(",") ?? ""),
               SizedBox(height: 100),
               Text("Shared urls/text:", style: textStyleBold),
+              Text(_sharedText ?? "")
             ],
           ),
         ),

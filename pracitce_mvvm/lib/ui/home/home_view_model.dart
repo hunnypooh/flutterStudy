@@ -41,7 +41,7 @@ class HomeViewModel with ChangeNotifier {
 
   Future<void> _loadCategories() async {
     List<Category> categories = await categoryUseCase.getCategoryList();
-    // _state = _state.copyWith(categories: categories);
+    _state = _state.copyWith(categories: categories);
     notifyListeners();
   }
 
@@ -50,16 +50,17 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void _saveCategory(String text, String imagePath) async {
+  Future<void> _saveCategory(String text, String imagePath) async {
     var category =
         Category(title: text, color: Random().nextInt(4), imagePath: imagePath);
     int id = await categoryUseCase.addCategory(category);
     category = category.copyWith(id: id);
 
-    var categoryArray = _state.categories.toList();
-    categoryArray.insert(0, category);
+    // var categoryArray = _state.categories.toList();
+    // categoryArray.insert(0, category);
 
-    _state = _state.copyWith(categories: categoryArray);
+    // _state = _state.copyWith(categories: categoryArray);
+    await _loadCategories();
     notifyListeners();
   }
 
